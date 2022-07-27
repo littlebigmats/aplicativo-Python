@@ -1,15 +1,22 @@
-<html>
-    <head>
-        <title> Contato </title>
-    </head>
-    <body>
-        <h1> Matias Sugranes, </h1>
-        <h2> matias.sugranes@gmail.com </h2>
+{% extends "base.html" %}
 
-        <ol>
-            <li>
-                item 1
-            </li>
-        </ol>
-    </body>
-</html>
+{%block title %} Página Inicial {% endblock %}
+
+{% block content %}
+{% for post in posts %}
+    <article class="post">
+        <header>
+            <div>
+                <h1>{{ post.title }}</h1>
+                <div class="about">
+                    by {{ post.author }} on {{ post.created.strftime('%d/%m/%Y') }}
+                </div>
+            </div>
+        </header>
+        <p class="body"> {{post.body}} </p>
+    </article>
+    {% if not loop.last %}
+        <hr>
+    {% endif %}    
+{% endfor %}
+{% endblock%}
