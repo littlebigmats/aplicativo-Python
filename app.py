@@ -31,14 +31,3 @@ def index():
     posts = Post.query.all()
     return render_template("index.html", posts=posts)
 
-@app.route("/populate")
-def populate():
-    user = User(username='feulo', email="g@g.com", password_hash='a')
-    post1 = Post(title="Post 1", body="Texto do Post", author=user)
-    post2 = Post(title="Post 2", body="Texto do Post 2", author=user)
-    db.session.add(user)
-    db.session.add(post1)
-    db.session.add(post2)
-    db.session.commit()
-    return redirect(url_for('index'))
-
